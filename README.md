@@ -34,28 +34,6 @@ The `requirements.txt` includes:
 
 ---
 
-## Folder Structure
-```
-.
-|-- Challenge_1/
-|   |-- load_data.py
-|   |-- preprocess_data.py
-|   |-- train_model.py
-|   
-|
-|-- Challenge_2/
-|   |-- database_schema.sql
-|   |-- ingredient_api.py
-|   |-- recipe_retrieval.py
-|   |-- chatbot_integration.py
-|   |-- requirements.txt
-|
-|-- README.md
-|-- requirements.txt
-```
-
----
-
 ## How to Run the Scripts
 
 ### Challenge 1: Banglish-to-Bengali Transliteration
