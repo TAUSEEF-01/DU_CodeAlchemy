@@ -63,34 +63,37 @@ The `requirements.txt` includes:
 
 ### Challenge 2: Mofa’s Kitchen Buddy
 1. **Setup Database**:  
-   Create the database schema by running:
+   run local database by:
    ```bash
-   sqlite3 kitchen.db < Challenge_2/database_schema.sql
+   mongod
    ```
 
 2. **Run Ingredient Management API**:  
-   Start the FastAPI server for managing ingredients.
+   Start the express server for managing ingredients.
    ```bash
-   uvicorn Challenge_2.ingredient_api:app --reload
+   node ./Challange\ 2/server/src/index.js
    ```
-
-3. **Run Recipe Retrieval System**:  
-   Parse recipe text and store it in the database.
+3. **Install required Python packages using pip:**:  
    ```bash
-   python Challenge_2/recipe_retrieval.py
+   pip install -r ./Challange\ 2/llms/requirements.txt
+   ```
+3. **Run Recipe Retrieval System**:  
+  
+   ```bash
+   python ./Challange\ 2/llms/recipe_creator.py
    ```
 
 4. **Run Chatbot Integration**:  
    Launch the chatbot interface for recipe suggestions.
    ```bash
-   python Challenge_2/chatbot_integration.py
+   python ./Challange\ 2/llms/chat.py
    ```
 
 ---
 
-## Additional Notes
-- Ensure all API endpoints are documented in the `API Documentation` section below.
-- For Challenge 2, dummy recipe data can be modified in `recipe_retrieval.py`.
+## Additional Notes for Challenge 2
+- MongoDB local server has been used for database. You can change connection string from `Challange 2/server/src/db/connect.js`
+- Dummy recipe data should be kept in `Challange 2/llms/recipes.txt`. Or, Change it from `Challange\ 2/llms/recipe_creator.py`
 
 ---
 
@@ -98,28 +101,13 @@ The `requirements.txt` includes:
 
 ### Ingredient Management API
 
-**Route**: `/ingredients`  
+**Route**: `/api/ingredients/get-ingredients`  
 **Method**: `GET`  
 **Description**: Retrieve all available ingredients.  
-**Sample Response**:
-```json
-[
-  {
-    "id": 1,
-    "name": "Tomato",
-    "quantity": 3
-  },
-  {
-    "id": 2,
-    "name": "Flour",
-    "quantity": 500
-  }
-]
-```
 
-**Route**: `/ingredients`  
-**Method**: `POST`  
-**Description**: Add or update an ingredient.  
+**Route**: `/api/ingredients/update-ingredient`  
+**Method**: `GET`  
+**Description**: update an ingredient.  
 **Sample Payload**:
 ```json
 {
@@ -127,41 +115,14 @@ The `requirements.txt` includes:
   "quantity": 3
 }
 ```
-
-### Recipe Retrieval API
-**Route**: `/recipes`  
+**Route**: `/api/ingredients/add-ingredient`  
 **Method**: `GET`  
-**Description**: Retrieve recipes based on available ingredients.  
-**Sample Response**:
-```json
-[
-  {
-    "name": "Tomato Soup",
-    "ingredients": ["Tomato", "Salt", "Water"],
-    "preparation_time": "30 minutes",
-    "cuisine": "Italian"
-  }
-]
-```
-
-### Chatbot API
-**Route**: `/chat`  
-**Method**: `POST`  
-**Description**: Interact with the chatbot for personalized recipe suggestions.  
+**Description**: add an ingredient.  
 **Sample Payload**:
 ```json
 {
-  "message": "I want something sweet."
+  "name": "Tomato",
+  "quantity": 3,
+   "unit" : "kg"
 }
 ```
-
-**Sample Response**:
-```json
-{
-  "response": "How about Chocolate Cake? You have most of the ingredients."
-}
-```
-
----
-
-**Happy Hacking!**
